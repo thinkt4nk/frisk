@@ -1,0 +1,30 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Boards &#187;{{#if title }} {{ title }}{{ else }}Simple Project Status{{/if }}</title>
+		
+		<link href="/stylesheets/common.css" rel="stylesheet" media="all" />  
+		<link href="/stylesheets/jquery-ui-1.8.22.custom/css/cupertino/jquery-ui-1.8.22.custom.css" rel="stylesheet" media="all" />  
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery-ui/1.8.21/jquery-ui.min.js"></script> 
+
+		{{> configuration }}
+		<!-- HELPERS -->
+		<script type="text/javascript" src="/javascripts/helpers/helper.url.js"></script>
+		<!-- SERVICES -->
+		<script type="text/javascript" src="/javascripts/services/service.boards.js"></script>
+		<!-- WIDGETS -->
+		<!-- PLUGINS -->
+		<script type="text/javascript" src="/javascripts/plugins/jquery.servicelocator.js"></script>
+		<!-- VIEW SPECIFIC -->
+		{{#each scripts}}<script type="text/javascript" src="{{ this }}"></script>{{/each }}
+		{{#each styles}}<link href="{{this}}" rel="stylesheet" media="all" />{{/each}}
+
+	</head>
+
+	<body>
+		{{#htmlEscape body }}{{ this }}{{/htmlEscape }}
+	</body>
+
+</html>

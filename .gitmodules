@@ -1,0 +1,3 @@
+[submodule "lib/view_partials"]
+	path = lib/view_partials
+	url = git@github.com:thinkt4nk/node-handlebars-view-partials.git
