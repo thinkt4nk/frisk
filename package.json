@@ -5,6 +5,8 @@
   "dependencies": {
     "express": "2.5.8",
     "handlebars": ">= 0.0.1",
-    "mysql": "~2.0.0-alpha3"
+    "mysql": "~2.0.0-alpha3",
+    "connect-mysql-session": "~0.1.1",
+    "migrate": "~0.1.3"
   }
 }
