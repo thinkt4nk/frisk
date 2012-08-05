@@ -35,12 +35,12 @@ var get = function(req, res){
 };
 
 var put = function(req, res) {
-	var model = require('../lib/models/state').model(req.app);
+	var model = require('../lib/models/state').model(req.app)
+			, data = model.validate(req.body);
 
 	// update state object
 	if (req.params.length > 0 && /\d+/.test(req.params[0])) {
-		var id = parseInt(req.params[0])
-			, data = model.validate(req.body.state);
+		var id = parseInt(req.params[0]);
 
 		if (data.__isValid) {
 			model.update(
@@ -49,6 +49,7 @@ var put = function(req, res) {
 				function(results, fields) {
 					if (results.length > 0) {
 						res.json(data);
+						res.end();
 					}
 				},
 				function(err) {
@@ -60,13 +61,14 @@ var put = function(req, res) {
 	}
 	// create state object
 	else {
+		console.log('form data::',req.body);
 		if (data.__isValid) {
 			model.create(
 				data,
 				function(results, fields) {
-					if (results.length > 0) {
-						res.json(data);
-					}
+					res.json(data);
+					console.log('ending response');
+					res.end();
 				},
 				function(err) {
 					console.log('an error occurred while trying to create model:', err);
@@ -85,7 +87,7 @@ var del = function(req, res) {
 	var model = require('../lib/models/state').model(req.app);
 
 	if (req.params.length > 0 && /\d+/.test(req.params[0])) {
-		this.deleteByPk(parseInt(req.params[0]));
+		model.deleteByPk(parseInt(req.params[0]));
 	}
 };
 

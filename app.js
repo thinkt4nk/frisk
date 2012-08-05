@@ -43,6 +43,7 @@ app.configure('production', function(){
 
 // Routes
 app.get('/', routes.index);
+//app.get('/test', routes.test);
 app.all('/tasks/*', routes.task.router);
 app.all('/states/*', routes.state.router);
 
