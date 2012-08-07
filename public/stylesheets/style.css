@@ -26,6 +26,15 @@ div#content div#state-container {
 }
 
 div#content div.frisk-state {
-	border: 1px solid black;
+	min-height: 200px;
+	border: 1px solid #333;
 	float: left;
+}
+
+div#content div.frisk-state .title {
+	border-bottom: 1px solid #333;
+	background-color: #2F7CBC;
+	color: white;
+	text-align: center;
+	padding: 5px 0;
 }

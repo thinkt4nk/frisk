@@ -6,7 +6,7 @@
 
 		options: {
 			state_max_width: 300, // pixels
-			min_gutter_width: 5, // pixels
+			min_gutter_width: 10, // pixels
 			states: []
 		},
 
@@ -42,8 +42,9 @@
 				, container_padding = parseInt(this.element.css('padding-left').replace(/px/,'')) + parseInt(this.element.css('padding-right').replace(/px/,''))
 				, container_margin = parseInt(this.element.css('margin-left').replace(/px/,'')) + parseInt(this.element.css('margin-right').replace(/px/,''))
 				, container_width = this.element.width() - container_padding - container_margin
-				, state_margin = (state_count * this.options.min_gutter_width)
-				, available_width = (container_width - state_margin)
+				, state_margin = this.options.min_gutter_width
+				, state_total_margin = (state_count * state_margin)
+				, available_width = (container_width - state_total_margin)
 				, state_width = Math.floor(available_width / state_count);
 
 			// enforce max width
@@ -59,7 +60,7 @@
 					, width = state_width - padding; // 2px side border
 				state
 					.width(width)
-					.css('margin-right', state_margin + 'px');
+					.css('margin-left', state_margin + 'px');
 			});
 		},
 

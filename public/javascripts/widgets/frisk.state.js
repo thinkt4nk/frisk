@@ -17,7 +17,7 @@
 				$.frisk.base_widget.prototype._init.apply(this, arguments);
 
 				this.element.addClass(this.widgetBaseClass);
-				this.element.height(200);
+				this.element.append($('<div/>').addClass('title').text(this.options.title));
 			},
 
 			_redraw: function() {

@@ -4,11 +4,11 @@
 		options: {
 			state_container: {
 				states: [
-					{ id: 1, title: "meh", detail: "meh" },
-					{ id: 1, title: "meh", detail: "meh" },
-					{ id: 1, title: "meh", detail: "meh" },
-					{ id: 1, title: "meh", detail: "meh" },
-					{ id: 1, title: "meh", detail: "meh" }
+					{ id: 1, title: "Scope", detail: "meh" },
+					{ id: 1, title: "Development", detail: "meh" },
+					{ id: 1, title: "QA", detail: "meh" },
+					{ id: 1, title: "Acceptance", detail: "meh" },
+					{ id: 1, title: "Deployment", detail: "meh" }
 				]
 			}
 		},
