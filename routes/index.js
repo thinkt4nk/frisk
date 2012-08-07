@@ -7,7 +7,16 @@ var state = require('./state')
  */
 module.exports = {
 	index: function(req, res){
-		res.render('index', { title: 'Frisk' });
+		res.render(
+			'index',
+			{ 
+				title: 'Frisk',
+				scripts: [
+					'/javascripts/views/index.js'
+				],
+				styles: []
+			}
+		);
 	},
 	test: function(req, res) {
 		res.render(
