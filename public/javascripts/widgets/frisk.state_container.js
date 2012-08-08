@@ -27,18 +27,19 @@
 		// Event Handlers
 		//==========================================
 		_state_removeHandler: function(e, data) {
-			if (data.uid != null && this.elements.states[data.uid] != null) {
-				delete this.elements.states[data.uid];
-			}
-			this._redraw();
+			var state_count = this.element.find('.frisk-state').length - 1;
+			this._redraw({
+				state_count: state_count
+			});
 		},
 
 
 		//==========================================
 		// Private Implementation
 		//==========================================
-		_redraw: function() {
-			var state_count = Object.keys(this.elements.states).length
+		_redraw: function(options) {
+			options = options || {};
+			var state_count = options.state_count || this.element.find('.frisk-state').length
 				, container_padding = parseInt(this.element.css('padding-left').replace(/px/,'')) + parseInt(this.element.css('padding-right').replace(/px/,''))
 				, container_margin = parseInt(this.element.css('margin-left').replace(/px/,'')) + parseInt(this.element.css('margin-right').replace(/px/,''))
 				, container_width = this.element.width() - container_padding - container_margin
@@ -50,9 +51,6 @@
 			// enforce max width
 			if (state_width > this.options.state_max_width) {
 				state_width = this.options.state_max_width;
-			}
-			if (state_count === 5) {
-				console.log('meh');
 			}
 			this.element.find('.frisk-state').each(function(i) {
 				var state = $(this)
@@ -82,15 +80,13 @@
 		//==========================================
 		addState: function(options) {
 			options = options || {};
-			var uid = this._guid()
-				, state = $('<div/>')
-					.data('uid', uid)
-					.state(options);
+			var state = $('<div/>').state(options)
+				, uid = state.data('uid');
 
-			this.elements.states = this.elements.states || {};
-			this.elements.states[uid] = state;
 			this.element.append(state);
+			state.bind('remove-state', $.proxy(this._state_removeHandler, this));
 			this._redraw();
+			return state;
 		},
 
 		destroy: function() {

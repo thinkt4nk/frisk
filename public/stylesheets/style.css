@@ -29,6 +29,18 @@ div#content div.frisk-state {
 	min-height: 200px;
 	border: 1px solid #333;
 	float: left;
+	position: relative;
+}
+
+div#content div.frisk-state .remove {
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	background-image: url(/images/sprites.png);
+	background-repeat: no-repeat;
+	top: -10px;
+	right: 5px;
+	cursor: pointer;
 }
 
 div#content div.frisk-state .title {
