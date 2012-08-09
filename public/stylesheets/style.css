@@ -4,8 +4,27 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+textarea, input[type="text"] {
+	font-size: 13px;
+	padding: 4px;
+	border: 1px solid #777;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+input[type="text"] {
+	height: 30px;
+	line-height: 30px;
+}
+
 a {
   color: #00B7FF;
+}
+
+div.vertical-spacer {
+	min-height: 20px;
+	clear: both;
 }
 
 div#header {
@@ -23,6 +42,11 @@ div#content div#state-container {
 	width: 90%;
 	margin: 10px auto;
 	min-height: 150px;
+}
+
+div#actions {
+	width: 90%;
+	margin: 10px auto;
 }
 
 div#content div.frisk-state {
@@ -50,3 +74,18 @@ div#content div.frisk-state .title {
 	text-align: center;
 	padding: 5px 0;
 }
+
+#actions input,
+#actions textarea {
+	width: 220px;
+	float: left;
+	clear: both;
+}
+#actions textarea {
+	min-height: 150px;
+}
+#actions .vertical-spacer {
+	min-height: 50px;
+}
+
+

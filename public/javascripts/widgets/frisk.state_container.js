@@ -58,7 +58,7 @@
 					, width = state_width - padding; // 2px side border
 				state
 					.width(width)
-					.css('margin-left', state_margin + 'px');
+					.css('margin-right', state_margin + 'px');
 			});
 		},
 
