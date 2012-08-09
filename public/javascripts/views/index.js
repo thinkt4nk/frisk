@@ -12,6 +12,8 @@
 			$('input:first').focus();
 			this.elements.state_container = $('#state-container');
 			this.elements.state_creator = $('form#add-state');
+			this.elements.task_creator = $('form#add-task');
+			this.elements.task_creator_toggle = $('#add-task-toggle');
 		},
 
 		_init: function() {
@@ -19,11 +21,31 @@
 			this._installStateContainer();
 
 			this.elements.state_creator.bind('submit', $.proxy(this._stateCreator_submitHandler, this));
+			this.elements.task_creator.bind('submit', $.proxy(this._taskCreator_submitHandler, this));
+			this.elements.task_creator_toggle.click($.proxy(this._taskCreatorToggle_clickHandler, this));
 		},
 
 		//==========================================
 		// Event Handlers
 		//==========================================
+		_taskCreatorToggle_clickHandler: function(e) {
+			if (this.elements.task_creator.is(':visible')) {
+				this.elements.task_creator.hide('fast');
+			}
+			else {
+				this.elements.task_creator.show('fast');
+			}
+		},
+		_taskCreator_submitHandler: function(e) {
+			e.preventDefault();
+			this.elements.task_creator
+				.find('textarea')
+					.val('')
+					.end()
+				.find('input[type="text"]')
+					.val('')
+					.focus();
+		},
 		_stateCreator_submitHandler: function(e) {
 			e.preventDefault();
 			var state_creator_form = $(e.target)

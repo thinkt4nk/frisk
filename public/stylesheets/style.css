@@ -13,6 +13,20 @@ textarea, input[type="text"] {
 	-webkit-border-radius: 3px;
 }
 
+input[type="submit"] {
+	margin: 0;
+	cursor: pointer;
+	height: 25px;
+	line-height: 17px;
+	padding: 4px;
+	border: 1px solid #666;
+	background-color: #2F7CBC;
+	color: white;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
 input[type="text"] {
 	height: 30px;
 	line-height: 30px;
@@ -39,6 +53,7 @@ div#header {
 }
 
 div#content div#state-container {
+	clear: both;
 	width: 90%;
 	margin: 10px auto;
 	min-height: 150px;
@@ -47,6 +62,13 @@ div#content div#state-container {
 div#actions {
 	width: 90%;
 	margin: 10px auto;
+}
+
+div#actions:after {
+	content: "";
+	display: block;
+	clear: both;
+	height: 10px;
 }
 
 div#content div.frisk-state {
@@ -77,9 +99,12 @@ div#content div.frisk-state .title {
 
 #actions input,
 #actions textarea {
-	width: 220px;
 	float: left;
 	clear: both;
+}
+#actions input[type="text"],
+#actions textarea {
+	width: 220px;
 }
 #actions textarea {
 	min-height: 150px;
@@ -87,5 +112,7 @@ div#content div.frisk-state .title {
 #actions .vertical-spacer {
 	min-height: 50px;
 }
-
-
+#actions #add-task-toggle {
+	cursor: pointer;
+	margin-bottom: 5px;
+}

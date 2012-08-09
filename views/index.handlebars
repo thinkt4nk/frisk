@@ -3,27 +3,34 @@
 		</div>
 
 		<div id="content">
-			<div id="state-container" class="ui-helper-clearfix">
-
-			</div>
-
 			<div id="actions">
+				<div id="add-task-toggle">+/- Tasks</div>
+				<form id="add-task" style="display:none;">
+					<input type="text" placeholder="New Task Name" />
+					<textarea placeholder="New Task Description"></textarea>
+					<input type="submit" value="Create Task"/>
+				</form>
+				<div class="vertical-spacer"></div>
 				<form id="add-state">
 					<input type="text" placeholder="New State Name" />
 				</form>
-				<div class="vertical-spacer"></div>
-				<form id="add-task">
-					<input type="text" placeholder="New Task Name" />
-					<textarea placeholder="New Task Description"></textarea>
-				</form>
 			</div>
+
+			<div id="state-container" class="ui-helper-clearfix"></div>
 		</div>
     
 
 <!-- TEMPLATES -->
-<script type="javascript/template" id="task-template">
+<script type="javascript/template" id="state-template">
 		<div class="frisk-state" data-id="${id}">
 			<div class="title">${title}</div>
 			<div class="remove"></div>
+		</div>
+</script>
+
+<script type="javascript/template" id="task-template">
+		<div class="frisk-task" data-id="${id}">
+			<div class="title">${title}</div>
+			<div class="detail">${detail}</div>
 		</div>
 </script>

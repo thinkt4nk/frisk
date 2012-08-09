@@ -22,7 +22,7 @@
 		_init: function() {
 			$.frisk.base_widget.prototype._init.apply(this, arguments);
 
-			this.templates.state = $.template('task', $('#task-template').html());
+			this.templates.state = $.template('task', $('#state-template').html());
 		},
 
 		//==========================================
