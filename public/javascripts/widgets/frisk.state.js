@@ -1,27 +1,22 @@
 (function($) {
 
 	$.widget('frisk.state', $.frisk.base_widget, {
-			
-			widgetBaseClass: 'frisk-state',
 
-			options: {
-				tasks: {}
-			},
+		options: {
+			tasks: {}
+		},
 
-			_create: function() {
-				$.frisk.base_widget.prototype._create.apply(this, arguments);
+		_create: function() {
+			$.frisk.base_widget.prototype._create.apply(this, arguments);
 
-				this.element
-					.addClass(this.widgetBaseClass)
-					.data('uid', this._guid());
-			},
+			this.element.data('uid', this._guid());
+		},
 
-			_init: function() {
-				$.frisk.base_widget.prototype._init.apply(this, arguments);
+		_init: function() {
+			$.frisk.base_widget.prototype._init.apply(this, arguments);
 
-				this._addTitle();
-				this._addRemove();
-			},
+			this.element.find('.remove').click($.proxy(this._remove_clickHandler, this));
+		},
 
 		//==========================================
 		// Event Handlers
@@ -34,32 +29,16 @@
 		//==========================================
 		// Private Implementation
 		//==========================================
-			_addTitle: function() {
-				var title_el = $('<div>');
+		_redraw: function() {
 
-				title_el
-					.addClass('title')
-					.text(this.options.title)
-					.appendTo(this.element);
-			},
-
-			_addRemove: function() {
-				var remove_el = $('<div>').addClass('remove');
-
-				remove_el.click($.proxy(this._remove_clickHandler, this));
-				this.element.append(remove_el);
-			},
-
-			_redraw: function() {
-
-			},
+		},
 
 		//==========================================
 		// Public Interface
 		//==========================================
-			destroy: function() {
+		destroy: function() {
 
-			}
+		}
 
 	});
 

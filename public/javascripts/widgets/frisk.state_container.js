@@ -21,6 +21,8 @@
 
 		_init: function() {
 			$.frisk.base_widget.prototype._init.apply(this, arguments);
+
+			this.templates.state = $.template('task', $('#task-template').html());
 		},
 
 		//==========================================
@@ -80,7 +82,7 @@
 		//==========================================
 		addState: function(options) {
 			options = options || {};
-			var state = $('<div/>').state(options)
+			var state = $.tmpl(this.templates.state, options).state()
 				, uid = state.data('uid');
 
 			this.element.append(state);

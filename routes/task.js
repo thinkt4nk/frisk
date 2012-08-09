@@ -61,13 +61,11 @@ var put = function(req, res) {
 	}
 	// create task object
 	else {
-		console.log('form data::',req.body);
 		if (data.__isValid) {
 			model.create(
 				data,
-				function(results, fields) {
-					res.json(data);
-					console.log('ending response');
+				function(model) {
+					res.json(model);
 					res.end();
 				},
 				function(err) {
@@ -75,6 +73,10 @@ var put = function(req, res) {
 					res.redirect('/500');
 				}
 			);
+		}
+		else {
+				console.log('The model was not valid');
+				res.redirect('/500');
 		}
 	}
 };

@@ -1,18 +1,41 @@
-$.addService("frisk", {
-	/* available services */
-	
-	/*
-	getOverview: function (data, success, error) {
-		this.execute("ajax", {
-			type:"GET",
-			url: URLHelper.buildAjaxURL(this.controller + "/Overview"),
-			data: URLHelper.buildQuery(data),
-			dataType: "json",
-			success: success,
-			error: error
+(function($) {
+	$.addService("frisk", {
+		/* available services */
+		
+		postCreateState: function (data, success, error) {
+			this.execute("ajax", {
+				type:"PUT",
+				url: "/states/",
+				data: data,
+				dataType: "json",
+				success: success,
+				error: error
+			},
+			this.postCreateStateFixture,
+			false);
 		},
-		this.getOverviewFixture(),
-		false);
-	},
-	*/
-});
+		getStates: function (data, success, error) {
+			this.execute("ajax", {
+				type:"GET",
+				url: "/states/",
+				data: data,
+				dataType: "json",
+				success: success,
+				error: error
+			},
+			this.postCreateStateFixture,
+			false);
+		},
+
+
+		//==========================================
+		// Fixtures
+		//==========================================
+		postCreateStateFixture: function(data) {
+			return $.extend(data, {
+				id: 1
+			});
+		}
+	});
+
+})(jQuery);

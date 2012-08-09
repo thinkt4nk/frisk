@@ -4,6 +4,7 @@
 
 		_create: function() {
 			this.elements = {};
+			this.templates = {};
 			$.Widget.prototype._create.apply(this, arguments);
 		},
 
