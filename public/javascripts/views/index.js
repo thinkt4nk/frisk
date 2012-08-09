@@ -4,12 +4,20 @@
 		options: {
 			state_container: {
 				states: [
+				/* FIXTURES
+					{ id: 1, title: "User Stories/Scope" },
+					{ id: 1, title: "Development" },
+					{ id: 1, title: "QA" },
+					{ id: 1, title: "Acceptance" },
+					{ id: 1, title: "Deployment" }
+				*/
 				]
 			}
 		},
 
 		_create: function() {
 			$.frisk.base_widget.prototype._create.apply(this, arguments);
+			$('input:first').focus();
 			this.elements.state_container = $('#state-container');
 			this.elements.state_creator = $('form#add-state');
 		},
@@ -46,6 +54,11 @@
 		//==========================================
 		// Public Interface
 		//==========================================
+
+		//==========================================
+		// Services
+		//==========================================
+
 	});
 
 	// call view controller widget on document
