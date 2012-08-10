@@ -21,15 +21,22 @@
 			this._installStateContainer();
 
 			this.elements.state_creator.bind('submit', $.proxy(this._stateCreator_submitHandler, this));
+			this.elements.state_container.bind('remove-state', $.proxy(this._stateContainer_removeStateHandler, this));
+			this.elements.state_container.bind('state-sortupdate', $.proxy(this._stateContainer_sortUpdateHandler, this));
 			this.elements.task_creator.bind('submit', $.proxy(this._taskCreator_submitHandler, this));
-			this.elements.state_container.bind('remove-state', $.proxy(this._stateCreator_removeStateHandler, this));
 			this.elements.task_creator_toggle.click($.proxy(this._taskCreatorToggle_clickHandler, this));
 		},
 
 		//==========================================
 		// Event Handlers
 		//==========================================
-		_stateCreator_removeStateHandler: function(e, data) {
+		_stateContainer_sortUpdateHandler: function(e, data) {
+			console.log('data::',data);
+			if (data.state_list != null) {
+				// stub
+			}
+		},
+		_stateContainer_removeStateHandler: function(e, data) {
 			if (data.id != null) {
 				var id = parseInt(data.id);
 				if (!isNaN(id)) {

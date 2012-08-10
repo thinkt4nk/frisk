@@ -7,7 +7,11 @@
 		options: {
 			state_max_width: 300, // pixels
 			min_gutter_width: 10, // pixels
-			states: []
+			states: [],
+			state_sortable: {
+				items: '.frisk-state',
+				placeholder: 'ui-state-highlight frisk-state'
+			}
 		},
 
 		_create: function() {
@@ -22,12 +26,42 @@
 		_init: function() {
 			$.frisk.base_widget.prototype._init.apply(this, arguments);
 
+			this.element.sortable(this.options.state_sortable);
+			this.element.disableSelection();
+			this.element.bind('sortupdate', $.proxy(this._state_sortUpdateHandler, this));
+			this.element.bind('sortstart', $.proxy(this._state_sortStartHandler, this));
 			this.templates.state = $.template('task', $('#state-template').html());
 		},
 
 		//==========================================
 		// Event Handlers
 		//==========================================
+		_state_sortStartHandler: function(e, ui) {
+			console.log('in start');
+			var state = this.element.find('.frisk-state')
+				, width = Math.floor(parseFloat(state.css('width').replace(/px/,'')))
+				, margin = Math.floor(parseFloat(state.css('margin-right').replace(/px/,'')));
+
+			this.element.find('.ui-state-highlight.frisk-state').css({
+				width: width + 'px',
+				height: '100px',
+				'margin-right': margin
+			});
+		},
+
+		_state_sortUpdateHandler: function(e, ui) {
+			var states = this.element.find('.frisk-state')
+				, state_count = states.length
+				, state_list = []
+				, state_container = this;
+
+			states.each(function(i) {
+				state_list.push($(this).data('id'));
+				if (i === (state_count - 1)) {
+					state_container.element.trigger('state-sortupdate', {state_list: state_list});
+				}
+			});
+		},
 
 		//==========================================
 		// Private Implementation

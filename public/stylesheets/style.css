@@ -95,6 +95,7 @@ div#content div.frisk-state .title {
 	color: white;
 	text-align: center;
 	padding: 5px 0;
+	cursor: move;
 }
 
 #actions input,
