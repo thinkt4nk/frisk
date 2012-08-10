@@ -90,7 +90,16 @@ var del = function(req, res) {
 	var model = require('../lib/models/state').model(req.app);
 
 	if (req.params.length > 0 && /\d+/.test(req.params[0])) {
-		model.deleteByPk(parseInt(req.params[0]));
+		model.deleteByPk(
+			parseInt(req.params[0]),
+			function() {
+				res.json({});
+				res.end();
+			},
+			function() {
+				res.redirect('/500');
+			}
+		);
 	}
 };
 

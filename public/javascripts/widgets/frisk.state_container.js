@@ -28,13 +28,6 @@
 		//==========================================
 		// Event Handlers
 		//==========================================
-		_state_removeHandler: function(e, data) {
-			var state_count = this.element.find('.frisk-state').length - 1;
-			this._redraw({
-				state_count: state_count
-			});
-		},
-
 
 		//==========================================
 		// Private Implementation
@@ -86,7 +79,6 @@
 				, uid = state.data('uid');
 
 			this.element.append(state);
-			state.bind('remove-state', $.proxy(this._state_removeHandler, this));
 			this._redraw();
 			return state;
 		},

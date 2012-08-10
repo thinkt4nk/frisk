@@ -22,12 +22,30 @@
 
 			this.elements.state_creator.bind('submit', $.proxy(this._stateCreator_submitHandler, this));
 			this.elements.task_creator.bind('submit', $.proxy(this._taskCreator_submitHandler, this));
+			this.elements.state_container.bind('remove-state', $.proxy(this._stateCreator_removeStateHandler, this));
 			this.elements.task_creator_toggle.click($.proxy(this._taskCreatorToggle_clickHandler, this));
 		},
 
 		//==========================================
 		// Event Handlers
 		//==========================================
+		_stateCreator_removeStateHandler: function(e, data) {
+			if (data.id != null) {
+				var id = parseInt(data.id);
+				if (!isNaN(id)) {
+					$.getService('frisk').postDeleteState(
+						{id: id},
+						function(response) {
+							// pass
+						},
+						function(response) {
+							alert('An error occurred while trying to delete the state');
+						}
+					);
+				}
+			}
+		},
+
 		_taskCreatorToggle_clickHandler: function(e) {
 			if (this.elements.task_creator.is(':visible')) {
 				this.elements.task_creator.hide('fast');
@@ -36,6 +54,7 @@
 				this.elements.task_creator.show('fast');
 			}
 		},
+
 		_taskCreator_submitHandler: function(e) {
 			e.preventDefault();
 			this.elements.task_creator
@@ -46,6 +65,7 @@
 					.val('')
 					.focus();
 		},
+
 		_stateCreator_submitHandler: function(e) {
 			e.preventDefault();
 			var state_creator_form = $(e.target)

@@ -22,7 +22,8 @@
 		// Event Handlers
 		//==========================================
 		_remove_clickHandler: function(e) {
-			this.element.trigger('remove-state', e);
+			var id = this.element.data('id');
+			this.element.trigger('remove-state', {id: id});
 			this.element.remove();
 		},
 

@@ -23,8 +23,22 @@
 				success: success,
 				error: error
 			},
-			this.postCreateStateFixture,
+			this.getStatesFixture,
 			false);
+		},
+		postDeleteState: function (data, success, error) {
+			if (data.id != null) {
+				this.execute("ajax", {
+					type:"DELETE",
+					url: "/states/" + data.id,
+					data: {},
+					dataType: "json",
+					success: success,
+					error: error
+				},
+				this.postDeleteStateFixture,
+				false);
+			}
 		},
 
 
@@ -35,7 +49,14 @@
 			return $.extend(data, {
 				id: 1
 			});
+		},
+		getStatesFixture: function(data) {
+			// stub
+		},
+		postDeleteStateFixture: function(data) {
+			// stub
 		}
+
 	});
 
 })(jQuery);
