@@ -31,9 +31,20 @@
 		// Event Handlers
 		//==========================================
 		_stateContainer_sortUpdateHandler: function(e, data) {
-			console.log('data::',data);
 			if (data.state_list != null) {
-				// stub
+				console.log('state_list::',data.state_list);
+				$.each(data.state_list, function(i, state) {
+					state.order = i;
+					$.getService('frisk').postStateUpdate(
+						state,
+						function(response) {
+							console.log('yerp');
+						},
+						function(response) {
+							console.log('nerp');
+						}
+					);
+				});
 			}
 		},
 		_stateContainer_removeStateHandler: function(e, data) {
@@ -44,6 +55,8 @@
 						{id: id},
 						function(response) {
 							// pass
+							var state = $(e.target).closest('.frisk-state');
+							state.remove();
 						},
 						function(response) {
 							alert('An error occurred while trying to delete the state');

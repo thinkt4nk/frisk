@@ -15,17 +15,21 @@
 		_init: function() {
 			$.frisk.base_widget.prototype._init.apply(this, arguments);
 
-			this.element.find('.remove').click($.proxy(this._remove_clickHandler, this));
+			this.element.find('.remove').click($.proxy(function(e) {
+				var state = $(e.target).closest('.frisk-state')
+					, model = {
+							id: parseInt(state.data('id')),
+							title: state.data('title'),
+							order: parseInt(state.data('order'))
+						};
+				console.log('model::',model);
+				this.element.trigger('remove-state', model);
+			}, this));
 		},
 
 		//==========================================
 		// Event Handlers
 		//==========================================
-		_remove_clickHandler: function(e) {
-			var id = this.element.data('id');
-			this.element.trigger('remove-state', {id: id});
-			this.element.remove();
-		},
 
 		//==========================================
 		// Private Implementation

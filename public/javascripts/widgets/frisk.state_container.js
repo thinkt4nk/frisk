@@ -37,7 +37,6 @@
 		// Event Handlers
 		//==========================================
 		_state_sortStartHandler: function(e, ui) {
-			console.log('in start');
 			var state = this.element.find('.frisk-state')
 				, width = Math.floor(parseFloat(state.css('width').replace(/px/,'')))
 				, margin = Math.floor(parseFloat(state.css('margin-right').replace(/px/,'')));
@@ -56,7 +55,13 @@
 				, state_container = this;
 
 			states.each(function(i) {
-				state_list.push($(this).data('id'));
+				var state_element = $(this)
+					, state = {
+							id: parseInt(state_element.data('id')),
+							title: state_element.data('title'),
+							order: state_element.data('order')
+						};
+				state_list.push(state);
 				if (i === (state_count - 1)) {
 					state_container.element.trigger('state-sortupdate', {state_list: state_list});
 				}

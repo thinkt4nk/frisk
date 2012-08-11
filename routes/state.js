@@ -38,6 +38,7 @@ var put = function(req, res) {
 	var model = require('../lib/models/state').model(req.app)
 			, data = model.validate(req.body);
 
+	console.log('params::',req.params);
 	// update state object
 	if (req.params.length > 0 && /\d+/.test(req.params[0])) {
 		var id = parseInt(req.params[0]);

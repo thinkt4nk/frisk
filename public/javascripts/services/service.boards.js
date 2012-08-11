@@ -40,6 +40,18 @@
 				false);
 			}
 		},
+		postStateUpdate: function (data, success, error) {
+			this.execute("ajax", {
+				type:"PUT",
+				url: "/states/" + data.id,
+				data: data,
+				dataType: "json",
+				success: success,
+				error: error
+			},
+			this.postStateUpdateFixture,
+			false);
+		},
 
 
 		//==========================================
@@ -54,6 +66,9 @@
 			// stub
 		},
 		postDeleteStateFixture: function(data) {
+			// stub
+		},
+		postStateUpdateFixture: function(data) {
 			// stub
 		}
 
