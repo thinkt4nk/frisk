@@ -38,10 +38,10 @@
 					$.getService('frisk').postStateUpdate(
 						state,
 						function(response) {
-							console.log('yerp');
+							// pass
 						},
 						function(response) {
-							console.log('nerp');
+							alert('A problem occurred while trying to sort the states');
 						}
 					);
 				});
@@ -49,7 +49,9 @@
 		},
 		_stateContainer_removeStateHandler: function(e, data) {
 			if (data.id != null) {
-				var id = parseInt(data.id);
+				var id = parseInt(data.id)
+					, view = this;
+
 				if (!isNaN(id)) {
 					$.getService('frisk').postDeleteState(
 						{id: id},
@@ -57,6 +59,7 @@
 							// pass
 							var state = $(e.target).closest('.frisk-state');
 							state.remove();
+							view.elements.state_container.state_container('redraw');
 						},
 						function(response) {
 							alert('An error occurred while trying to delete the state');

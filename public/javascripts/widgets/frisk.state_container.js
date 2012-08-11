@@ -112,6 +112,10 @@
 		//==========================================
 		// Public Interface
 		//==========================================
+		redraw: function(options) {
+			this._redraw();
+		},
+
 		addState: function(options) {
 			options = options || {};
 			var state = $.tmpl(this.templates.state, options).state()

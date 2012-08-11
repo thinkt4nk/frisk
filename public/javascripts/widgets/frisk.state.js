@@ -22,7 +22,6 @@
 							title: state.data('title'),
 							order: parseInt(state.data('order'))
 						};
-				console.log('model::',model);
 				this.element.trigger('remove-state', model);
 			}, this));
 		},
