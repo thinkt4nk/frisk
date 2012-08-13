@@ -24,11 +24,15 @@
 						};
 				this.element.trigger('remove-state', model);
 			}, this));
+			this.element.find('.frisk-task').on('remove-task', $.proxy(this._task_removeTaskHandler, this));
 		},
 
 		//==========================================
 		// Event Handlers
 		//==========================================
+		_task_removeTaskHandler: function(e) {
+
+		},
 
 		//==========================================
 		// Private Implementation
@@ -40,6 +44,10 @@
 		//==========================================
 		// Public Interface
 		//==========================================
+		addTask: function() {
+
+		},
+
 		destroy: function() {
 
 		}

@@ -49,6 +49,9 @@ div#header {
 	line-height: 40px;
 	font-size: 16px;
 	font-family: Helvetica,Verdana,sans-serif;
+}
+
+div#header #logo {
 	padding-left: 8px;
 }
 
@@ -117,3 +120,9 @@ div#content div.frisk-state .title {
 	cursor: pointer;
 	margin-bottom: 5px;
 }
+
+/* Tasks */
+.frisk-task {
+
+}
+

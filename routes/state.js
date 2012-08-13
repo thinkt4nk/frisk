@@ -48,10 +48,8 @@ var put = function(req, res) {
 				id,
 				data,
 				function(results, fields) {
-					if (results.length > 0) {
-						res.json(data);
-						res.end();
-					}
+					res.json(data);
+					res.end();
 				},
 				function(err) {
 					console.log('an error occurred while trying to update a specific model:', err);

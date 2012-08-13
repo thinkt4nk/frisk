@@ -5,11 +5,13 @@
 		<div id="content">
 			<div id="actions">
 				<div id="add-task-toggle">+/- Tasks</div>
+
 				<form id="add-task" style="display:none;">
 					<input type="text" placeholder="New Task Name" />
 					<textarea placeholder="New Task Description"></textarea>
 					<input type="submit" value="Create Task"/>
 				</form>
+
 				<div class="vertical-spacer"></div>
 				<form id="add-state">
 					<input type="text" placeholder="New State Name" />
@@ -29,7 +31,7 @@
 </script>
 
 <script type="javascript/template" id="task-template">
-		<div class="frisk-task" data-id="${id}">
+		<div class="frisk-task" data-id="${id}" data-title="${title}" data-detail="${detail}">
 			<div class="title">${title}</div>
 			<div class="detail">${detail}</div>
 		</div>

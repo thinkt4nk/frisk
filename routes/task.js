@@ -38,6 +38,7 @@ var put = function(req, res) {
 	var model = require('../lib/models/task').model(req.app)
 			, data = model.validate(req.body);
 
+	console.log('params::',req.params);
 	// update task object
 	if (req.params.length > 0 && /\d+/.test(req.params[0])) {
 		var id = parseInt(req.params[0]);
@@ -47,10 +48,8 @@ var put = function(req, res) {
 				id,
 				data,
 				function(results, fields) {
-					if (results.length > 0) {
-						res.json(data);
-						res.end();
-					}
+					res.json(data);
+					res.end();
 				},
 				function(err) {
 					console.log('an error occurred while trying to update a specific model:', err);
@@ -61,6 +60,7 @@ var put = function(req, res) {
 	}
 	// create task object
 	else {
+		console.log('form data::',req.body);
 		if (data.__isValid) {
 			model.create(
 				data,
@@ -86,12 +86,21 @@ var post = function(req, res) {
 }
 
 var del = function(req, res) {
-	var model = require('../lib/models/task'.model(req.app));
+	var model = require('../lib/models/task').model(req.app);
 
 	if (req.params.length > 0 && /\d+/.test(req.params[0])) {
-		model.deleteByPk(parseInt(req.params[0]));
+		model.deleteByPk(
+			parseInt(req.params[0]),
+			function() {
+				res.json({});
+				res.end();
+			},
+			function() {
+				res.redirect('/500');
+			}
+		);
 	}
-}
+};
 
 /*
  * API Handler for Task Module */

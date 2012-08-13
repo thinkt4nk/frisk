@@ -30,7 +30,7 @@
 			this.element.disableSelection();
 			this.element.bind('sortupdate', $.proxy(this._state_sortUpdateHandler, this));
 			this.element.bind('sortstart', $.proxy(this._state_sortStartHandler, this));
-			this.templates.state = $.template('task', $('#state-template').html());
+			this.templates.state = $.template('state', $('#state-template').html());
 		},
 
 		//==========================================

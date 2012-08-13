@@ -11,18 +11,20 @@
 			$.frisk.base_widget.prototype._create.apply(this, arguments);
 			$('input:first').focus();
 			this.elements.state_container = $('#state-container');
+			this.elements.state_container.state_container(this.options.state_container);
 			this.elements.state_creator = $('form#add-state');
 			this.elements.task_creator = $('form#add-task');
 			this.elements.task_creator_toggle = $('#add-task-toggle');
+			this.templates.task = $.template('task', $('#task-template').html());
 		},
 
 		_init: function() {
 			$.frisk.base_widget.prototype._init.apply(this, arguments);
 			this._installStateContainer();
 
-			this.elements.state_creator.bind('submit', $.proxy(this._stateCreator_submitHandler, this));
 			this.elements.state_container.bind('remove-state', $.proxy(this._stateContainer_removeStateHandler, this));
 			this.elements.state_container.bind('state-sortupdate', $.proxy(this._stateContainer_sortUpdateHandler, this));
+			this.elements.state_creator.bind('submit', $.proxy(this._stateCreator_submitHandler, this));
 			this.elements.task_creator.bind('submit', $.proxy(this._taskCreator_submitHandler, this));
 			this.elements.task_creator_toggle.click($.proxy(this._taskCreatorToggle_clickHandler, this));
 		},
@@ -32,7 +34,6 @@
 		//==========================================
 		_stateContainer_sortUpdateHandler: function(e, data) {
 			if (data.state_list != null) {
-				console.log('state_list::',data.state_list);
 				$.each(data.state_list, function(i, state) {
 					state.order = i;
 					$.getService('frisk').postStateUpdate(
@@ -41,7 +42,7 @@
 							// pass
 						},
 						function(response) {
-							alert('A problem occurred while trying to sort the states');
+							// stub
 						}
 					);
 				});
@@ -80,13 +81,32 @@
 
 		_taskCreator_submitHandler: function(e) {
 			e.preventDefault();
-			this.elements.task_creator
-				.find('textarea')
-					.val('')
-					.end()
-				.find('input[type="text"]')
-					.val('')
-					.focus();
+
+			var view = this
+				, title = this.elements.task_creator.find('input[type="text"]')
+				, detail = this.elements.task_creator.find('textarea')
+				, new_task = {
+						title: title,
+						detail: detail
+					};
+
+			// create new task
+			$.getService('frisk').postCreateTask(
+				new_task,
+				function(response, status) {
+					if (status === 'success' && 'object' === typeof response) {
+						// TODO: Finish
+						//var task_element = $.tmpl(this.templates
+					}
+				},
+				function(response) {
+					alert('An error occurred while trying to create the new task');
+				}
+			);
+
+			// reset values and set focus in title
+			details.val('');
+			title.val('').focus();
 		},
 
 		_stateCreator_submitHandler: function(e) {
@@ -117,7 +137,6 @@
 		//==========================================
 		_installStateContainer: function() {
 			var view = this;
-			this.elements.state_container.state_container(this.options.state_container);
 			$.getService('frisk').getStates(
 				{},
 				function(response, status) {

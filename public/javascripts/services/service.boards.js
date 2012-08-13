@@ -52,6 +52,18 @@
 			this.postStateUpdateFixture,
 			false);
 		},
+		postCreateTask: function (data, success, error) {
+			this.execute("ajax", {
+				type:"PUT",
+				url: "/tasks/",
+				data: data,
+				dataType: "json",
+				success: success,
+				error: error
+			},
+			this.postCreateTaskFixture,
+			false);
+		},
 
 
 		//==========================================
@@ -70,6 +82,9 @@
 		},
 		postStateUpdateFixture: function(data) {
 			// stub
+		},
+		postCreateTaskFixture: function(data) {
+
 		}
 
 	});
