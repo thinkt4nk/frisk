@@ -3,9 +3,9 @@
 	$.widget('frisk.base_widget', {
 
 		_create: function() {
+			$.Widget.prototype._create.apply(this, arguments);
 			this.elements = {};
 			this.templates = {};
-			$.Widget.prototype._create.apply(this, arguments);
 		},
 
 		_init: function() {

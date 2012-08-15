@@ -17,20 +17,22 @@
 		_create: function() {
 			$.frisk.base_widget.prototype._create.apply(this, arguments);
 
-			$.each(this.options.states, $.proxy(function(i, state) {
-				this.addState(state);
-			}, this));
-			this.element.addClass(this.widgetBaseClass);
+			this.templates.state = $.template('state', $('#state-template').html());
 		},
 
 		_init: function() {
 			$.frisk.base_widget.prototype._init.apply(this, arguments);
 
+			$.each(this.options.states, $.proxy(function(i, state) {
+				this.addState(state);
+			}, this));
+
+			this.element.addClass(this.widgetBaseClass);
 			this.element.sortable(this.options.state_sortable);
 			this.element.disableSelection();
+
 			this.element.bind('sortupdate', $.proxy(this._state_sortUpdateHandler, this));
 			this.element.bind('sortstart', $.proxy(this._state_sortStartHandler, this));
-			this.templates.state = $.template('state', $('#state-template').html());
 		},
 
 		//==========================================

@@ -9,9 +9,8 @@
 
 		_create: function() {
 			$.frisk.base_widget.prototype._create.apply(this, arguments);
-			$('input:first').focus();
+
 			this.elements.state_container = $('#state-container');
-			this.elements.state_container.state_container(this.options.state_container);
 			this.elements.state_creator = $('form#add-state');
 			this.elements.task_creator = $('form#add-task');
 			this.elements.task_creator_toggle = $('#add-task-toggle');
@@ -20,6 +19,7 @@
 
 		_init: function() {
 			$.frisk.base_widget.prototype._init.apply(this, arguments);
+
 			this._installStateContainer();
 
 			this.elements.state_container.bind('remove-state', $.proxy(this._stateContainer_removeStateHandler, this));
@@ -27,6 +27,8 @@
 			this.elements.state_creator.bind('submit', $.proxy(this._stateCreator_submitHandler, this));
 			this.elements.task_creator.bind('submit', $.proxy(this._taskCreator_submitHandler, this));
 			this.elements.task_creator_toggle.click($.proxy(this._taskCreatorToggle_clickHandler, this));
+
+			$('input:first').focus();
 		},
 
 		//==========================================
@@ -136,6 +138,7 @@
 		// Private Implementation
 		//==========================================
 		_installStateContainer: function() {
+			this.elements.state_container.state_container(this.options.state_container);
 			var view = this;
 			$.getService('frisk').getStates(
 				{},
