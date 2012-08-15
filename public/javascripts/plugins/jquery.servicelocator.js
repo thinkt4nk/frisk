@@ -1,7 +1,8 @@
-(function( $ ){
+(function($){
 
-	var Service = function () {};
-	
+	var _serviceLocator = {};
+
+	function Service() {}
 	Service.prototype.execute = function (type, options, fixture, useFixture) {
 		if (typeof useFixture != "undefined" && useFixture) {
 			options.success(fixture);
@@ -12,19 +13,14 @@
 	};
 
 	$.extend({
-		
-		_serviceLocator:{},
-		
 		addService: function (name, options) {
 			var newService = $.extend (new Service(), options);
-			$._serviceLocator[name] = newService;
+			_serviceLocator[name] = newService;
 			return newService;
 		}, 
-		
 		getService: function (name) {
-			return $._serviceLocator[name];
+			return _serviceLocator[name];
 		}
-		
 	});
 
 })( jQuery );
