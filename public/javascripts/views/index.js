@@ -29,6 +29,9 @@
 			this.elements.task_creator_toggle.click($.proxy(this._taskCreatorToggle_clickHandler, this));
 
 			$('input:first').focus();
+
+			// index.js
+			console.log($.getModule('frisk.util').returnMeh());
 		},
 
 		//==========================================
