@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "2.5.8",
+    "express": "4.17.1",
     "handlebars": ">= 0.0.1",
     "mysql": "~2.0.0-alpha3",
     "connect-mysql-session": "~0.1.1",
